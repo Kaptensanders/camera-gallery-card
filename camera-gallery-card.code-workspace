@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../usr/src/homeassistant"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/__pycache__": true,
+			"**/.pytest_cache": true
+		}
+	}
+}

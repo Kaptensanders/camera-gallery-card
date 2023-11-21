@@ -1,0 +1,19 @@
+{
+  "name": "Camera Gallery Card",
+  "//image": "kaptensanders/hass_dev_image",
+  "image": "hass_dev_image",
+  "postCreateCommand": "container setup-project",
+  "containerEnv": {},
+  "appPort": ["8123:8123"],
+  "remoteUser": "vscode",
+  "mounts": [
+  ],
+  "runArgs": [
+    "--name", "camera-gallery-card-dev",
+    "--env-file",".devcontainer/container.env"
+  ],
+  "customizations":{
+    "vscode": {
+    }
+  }
+}
