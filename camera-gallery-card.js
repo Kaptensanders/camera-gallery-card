@@ -41,9 +41,7 @@ export class CameraGalleryCard extends LitElement {
         this._state_h = hass.states[this._entity_hourly];
         this._state_m = hass.states[this._entity_motion];
         if (this._state_h && this._state_m) {
-            let fn = this._state_h.attributes.friendly_name;
-            this._name = fn ? fn : this._entity_hourly;
-
+            console.log("set HASS")
             if (this._state_h.attributes.file_list.length > 0) {
                 let url = this._getURL(this._state_h, this._state_h.attributes.file_list[0]);
                 let urlM = this._getSizedURL(url, "med")
