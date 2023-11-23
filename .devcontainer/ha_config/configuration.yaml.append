@@ -2,3 +2,4 @@
 
 sensor: !include sensors.yaml
 lovelace: !include lovelace.yaml
+template: !include template.yaml

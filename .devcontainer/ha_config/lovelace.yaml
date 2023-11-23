@@ -2,7 +2,7 @@ mode: storage
 dashboards:
   lovelace-padpanel:
     mode: yaml
-    title: My Component
+    title: Camera Gallery Card
     icon: mdi:home
     show_in_sidebar: true
     filename: panel.yaml

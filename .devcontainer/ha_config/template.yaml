@@ -1,0 +1,49 @@
+- sensor:
+    - name: "Hourly Snapshots"
+      state: '20231120-140000.jpg'
+      attributes:
+        file_list: >
+          {{[
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-140000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-130000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-120000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-110000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-100000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-090000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-080000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-070000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-060000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-050000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-040000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-030000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-020000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-010000.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-000000.jpg"
+          ]}}
+        url_path: "/local/camera/hourly/"
+          
+
+    - name: "Motion Snapshots"
+      state: '20231120-031850.jpg'
+      attributes:
+        file_list: >
+          {{[
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231120-031850.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231120-011607.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231119-230841.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231119-191558.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-182936.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-174936.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173338.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173333.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173255.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173245.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173238.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-165835.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-162634.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-205213.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-204442.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-195002.jpg",
+            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-162953.jpg"
+          ]}}
+        url_path: "/local/camera/motion/"

@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -it camera-gallery-card-dev /bin/bash

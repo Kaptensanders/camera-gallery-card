@@ -1,2 +1,3 @@
-logs:
-  custom_components.my-component: debug
+default: info
+# logs:
+

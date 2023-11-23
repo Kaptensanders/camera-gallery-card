@@ -5,3 +5,28 @@ echo "--- begin project specific setup for Camera Gallery Card --"
 # TODO
 # Add project specific setup directives to this file
 # It will be called by "container setup-project" (see devcontainer.json postCreateCommand)
+
+# useful environment vars:
+#
+# WORKSPACE_DIR - usually /workspaces/<project>, eg repo mounted into devcontainer
+# HA_CONFIG_DIR - usually $WORKSPACE_DIR/.homeassistant, HA config dir
+# PROJECT_NAME - name of the project (should be same as repo)
+# PROJECT_TITLE - Friendly project name
+#
+
+FRONTEND_DIR=$HA_CONFIG_DIR/www/$PROJECT_NAME
+JS_FILE=${PROJECT_NAME}.js
+echo "Creating ${FRONTEND_DIR}..."
+mkdir -p $FRONTEND_DIR
+
+echo "Creating hard link $FRONTEND_DIR/$JS_FILE"
+ln $WORKSPACE_DIR/$JS_FILE $FRONTEND_DIR/$JS_FILE
+echo "Installing legacy gallery card"
+cp $WORKSPACE_DIR/gallery-card.js $FRONTEND_DIR/
+
+add_ha_resource /local/$PROJECT_NAME/$JS_FILE
+add_ha_resource /local/$PROJECT_NAME/gallery-card.js
+
+# add image dir
+cp -R  $WORKSPACE_DIR/media/camera $HA_CONFIG_DIR/www/
+

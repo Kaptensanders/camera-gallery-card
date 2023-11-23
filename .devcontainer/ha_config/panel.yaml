@@ -1,14 +1,17 @@
-title: My Component
+title: Camera Gallery Card
 views:
-  - title: My Component
-    path: my-component
+  - title: Camera Gallery Card
+    path: camera-gallery-card
+    type: custom:vertical-layout
+    layout:
+      max_width: 700
     cards:
+      - type: custom:camera-gallery-card
+        hourly_dir_entity: sensor.hourly_snapshots
+        motion_dir_entity: sensor.motion_snapshots
 
-
-
-
-
-
-
-
-
+      - type: custom:gallery-card
+        menu_alignment: Right
+        reverse_sort: false
+        entities:
+          - sensor.hourly_snapshots
