@@ -72,7 +72,6 @@ export class CameraGalleryCard extends LitElement {
     }
 
     render() {
-        console.log ("RENDER");
 
         let content;
         if (!this._state_h || !this._state_m) {
@@ -148,7 +147,7 @@ export class CameraGalleryCard extends LitElement {
                 grid-template-columns: 1fr 20%; /* 20% for vertical list, rest for view pane */
                 width: 100%; /* Width is 100% of parent */
                 aspect-ratio: 16 / 9; /* Fixed aspect ratio */
-                overflow: auto; /* Handle overflow */
+                overflow: hidden; /* Handle overflow */
             }
             
             .horizontal-list, .vertical-list {
