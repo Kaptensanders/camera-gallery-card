@@ -6,6 +6,7 @@ export class CameraGalleryCard extends LitElement {
 
     // private property
     _hass;
+    _mediaUrlCache;
 
     // internal reactive states
     static get properties() {
@@ -16,13 +17,18 @@ export class CameraGalleryCard extends LitElement {
             _state_m: { state: true },
             _selectedImage: { type: String },
             _showOverlay: { type: Boolean },
-            _selectedThumbnail: { type: String }
+            _showVideoPopup: { type: Boolean },
+            _selectedThumbnail: { type: String },
+            _mediaUrl: { type: String },
         };
     }
 
     constructor() {
         super();
         this._showOverlay = false;
+        this._mediaUrl = "";
+        this._showVideoPopup = false;
+        this._mediaUrlCache = new Map();
     }
 
     // lifecycle interface
@@ -42,31 +48,35 @@ export class CameraGalleryCard extends LitElement {
         let newH = hass.states[this._entity_hourly];
         let newM = hass.states[this._entity_motion];
 
-        if (!this._state_h || !this._state_m || 
+        if (!this._state_h || !this._state_m ||
             this._state_h.state !== newH.state ||
             this._state_m.state !== newM.state ||
             this._state_h.attributes.number_of_files != newH.attributes.number_of_files ||
             this._state_m.attributes.number_of_files != newM.attributes.number_of_files)
         {
+
             this._state_h = hass.states[this._entity_hourly];
             this._state_m = hass.states[this._entity_motion];
             
             if (this._state_h.attributes.file_list.length > 0) {
-                let url = this._getURL(this._state_h, this._state_h.attributes.file_list[0]);
+                let url = this._state_h.attributes.file_list[0].image;
                 let urlM = this._getSizedURL(url, "med")
-                if (this._selectedImage != urlM) { 
+                if (this._selectedImage != urlM) {
                     this._selectedImage = urlM;
                     this._selectedThumbnail = this._getSizedURL(url, "thumb");
-                } 
+                }
+                // fill up the media_source cache
+                this._state_h.attributes.file_list.map((entry, index) => { this.prepareVideoUrl(entry.video, false); });
+                this._state_m.attributes.file_list.map((entry, index) => { this.prepareVideoUrl(entry.video, false); });        
             }
         }
     }
 
     render_images(entity) {
 
-        return html`${ entity.attributes.file_list.map((file, index) => {
-                let src = this._getSizedURL(this._getURL(entity, file), "thumb");
-                return html`<img class="thumbnail ${this._selectedThumbnail === src ? 'selected' : ''}" src="${src}" @click="${() => this.selectImage(src)}">`;
+        return html`${ entity.attributes.file_list.map((entry, index) => {
+                let thumb = this._getSizedURL(entry.image, "thumb");
+                return html`<img class="thumbnail ${this._selectedThumbnail === thumb ? 'selected' : ''}" src="${thumb}" @click="${() => this.selectImage(thumb, entry.video)}">`;
             })
         }`;
     }
@@ -83,10 +93,10 @@ export class CameraGalleryCard extends LitElement {
         } else {
             content = html`
 
-
             <div class="container">
                 <div class="view-pane">
                     <img src="${this._selectedImage}" @click="${this.toggleOverlay}" alt="View Image">
+                    <button class="play-button ${this._mediaUrl !== "" ? 'visible' : ''}" @click="${this.toggleVideoPopup}">Play</button>
                 </div>
                 <div class="vertical-list">
                     ${this.render_images(this._state_h)}
@@ -105,23 +115,56 @@ export class CameraGalleryCard extends LitElement {
                 <div class="overlay" @click="${this.toggleOverlay}">
                   <img src="${this._selectedImage.replace("_med", "")}" class="overlay-image">
                 </div>
-              ` : ''}
+              ` : ''}              
             </ha-card>
         `;
+    }
+
+    toggleVideoPopup(e) {
+        e.stopPropagation(); // Prevent triggering the view pane @click handler
+        this._showVideoPopup = !this._showVideoPopup;
     }
 
     toggleOverlay() {
         this._showOverlay = !this._showOverlay;
     }
 
-    selectImage(url) {
+    selectImage(url, mediaContentId) {
         this._selectedThumbnail = url;
         this._selectedImage = url.replace("_thumb", "_med");
+        this.prepareVideoUrl(mediaContentId)
     }
 
-    _getURL (entity, file) {
-        return entity.attributes.url_path + file.substring(file.lastIndexOf('/') + 1)
-    }
+    async prepareVideoUrl(mediaContentId, setActive = true) {
+
+        if (this._mediaUrlCache.has(mediaContentId)) {
+            if (setActive)
+                this._mediaUrl = this._mediaUrlCache.get(mediaContentId);
+            return
+        }
+        try {
+            
+            if (setActive)
+                this._mediaUrl = ""
+
+            if (mediaContentId) {                          
+                const response = await this._hass.callWS(
+                    {
+                        type: "media_source/resolve_media",
+                        media_content_id: mediaContentId
+                    });                    
+
+                if (response && response.url) {
+                    if (setActive)
+                        this._mediaUrl = response.url;
+                    this._mediaUrlCache.set(mediaContentId, response.url)
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching media URL:', error);
+        }
+      }
+
 
     _getSizedURL(orgUrl, size="full") {
     
@@ -176,6 +219,7 @@ export class CameraGalleryCard extends LitElement {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                position: relative;
             }
             
             img {
@@ -248,7 +292,18 @@ export class CameraGalleryCard extends LitElement {
                 opacity: 0.5; /* 50% transparency for the selected thumbnail */
               }
                             
-                           
+              .play-button {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                visibility: hidden; /* Initially hidden */
+                /* Style your play button */
+              }
+              .play-button.visible {
+                visibility: visible;
+              }
+
+
             `
     }
 }

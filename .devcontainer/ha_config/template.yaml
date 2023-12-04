@@ -2,48 +2,42 @@
     - name: "Hourly Snapshots"
       state: '20231120-140000.jpg'
       attributes:
+        number_of_files: 15,
         file_list: >
           {{[
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-140000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-130000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-120000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-110000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-100000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-090000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-080000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-070000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-060000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-050000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-040000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-030000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-020000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-010000.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/hourly/20231120-000000.jpg"
+            {"image":"/local/camera/hourly/20231120-140000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-140000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-120000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-110000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-100000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-090000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-080000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-070000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-060000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-050000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-040000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-030000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-020000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-010000.jpg", "video":None},
+            {"image":"/local/camera/hourly/20231120-000000.jpg", "video":None}
           ]}}
-        url_path: "/local/camera/hourly/"
-          
 
     - name: "Motion Snapshots"
-      state: '20231120-031850.jpg'
+      state: '1701208972-1701208996.jpg'
       attributes:
+        number_of_files: 8,
         file_list: >
           {{[
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231120-031850.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231120-011607.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231119-230841.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231119-191558.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-182936.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-174936.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173338.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173333.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173255.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173245.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-173238.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-165835.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231118-162634.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-205213.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-204442.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-195002.jpg",
-            "/home/homeassistant/.homeassistant/www/camera/motion/20231116-162953.jpg"
+            {"image":"/local/camera/motion/1701208972-1701208996.jpg", "video":"media-source://media_source/motion_videos/1701208972-1701208996.mp4"},
+            {"image":"/local/camera/motion/1701210438-1701210516.jpg", "video":"media-source://media_source/motion_videos/1701210438-1701210516.mp4"},
+            {"image":"/local/camera/motion/1701210766-1701210868.jpg", "video":"media-source://media_source/motion_videos/1701210766-1701210868.mp4"},
+            {"image":"/local/camera/motion/1701211050-1701211114.jpg", "video":"media-source://media_source/motion_videos/1701211050-1701211114.mp4"},
+            {"image":"/local/camera/motion/1701212832-1701212896.jpg", "video":"media-source://media_source/motion_videos/1701212832-1701212896.mp4"},
+            {"image":"/local/camera/motion/1701213720-1701213796.jpg", "video":"media-source://media_source/motion_videos/1701213720-1701213796.mp4"},
+            {"image":"/local/camera/motion/1701214156-1701214228.jpg", "video":"media-source://media_source/motion_videos/1701214156-1701214228.mp4"},
+            {"image":"/local/camera/motion/1701219066-1701219132.jpg", "video":"media-source://media_source/motion_videos/1701219066-1701219132.mp4"},
           ]}}
-        url_path: "/local/camera/motion/"
+
+
+
+

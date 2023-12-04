@@ -11,7 +11,5 @@ views:
         motion_dir_entity: sensor.motion_snapshots
 
       - type: custom:gallery-card
-        menu_alignment: Right
-        reverse_sort: false
         entities:
-          - sensor.hourly_snapshots
+          - 'media-source://media_source/motion_videos/'
